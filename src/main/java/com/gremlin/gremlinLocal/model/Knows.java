@@ -7,6 +7,7 @@ public class Knows {
 
   private String id;
   private String label;
+  private String type;
   private Person inV;
   private Person outV;
   private String inVLabel;
@@ -58,5 +59,13 @@ public class Knows {
 
   public void setOutVLabel(String outVLabel) {
     this.outVLabel = outVLabel;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 }

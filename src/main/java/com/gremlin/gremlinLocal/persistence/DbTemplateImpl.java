@@ -130,7 +130,6 @@ public class DbTemplateImpl implements DbTemplate {
             edgeLabel);
 
     ResultSet results = client.submit(query);
-
   }
 
   /**
