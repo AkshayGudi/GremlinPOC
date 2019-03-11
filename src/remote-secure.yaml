@@ -27,16 +27,11 @@
 #  sslEnabledProtocols: [TLSv1.2] }
 ##############################################################
 
-hosts: [springgremlin.gremlin.cosmosdb.azure.com]
+#These are dummy values or placeholders, not actual credentials
+hosts: [myhostname.gremlin.cosmosdb.azure.com]
 port: 443
-username: /dbs/gremlin-database/colls/gremlin-graph
-password: ZXiDqG85f4HMBuCLyJFQ0styxr7wgctf6BU96IgWx0DsEjXn1iUGZHNlYqGaqbJFLnm8stgOt2NiSpNiPZy1aA==
+username: /dbs/mydatabase/colls/mygraph
+password: myPasswordString
 connectionPool: {enableSsl: true, keepAliveInterval: 1800000, maxWaitForConnection: 1800000}
 serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV1d0, config: { serializeResultToString: true }}
 
-#hosts: [pocgremlin.gremlin.cosmos.azure.com]
-#port: 443
-#username: /dbs/test/colls/poc
-#password: tBnAXkILcRpOVf88LJkLckpWk8YdtmVVDisymnx5TKtO2JlskLbLJKnDWx4Oz7ZEC5wMYmd37rBvcswIhRRzEQ==
-#connectionPool: {enableSsl: true}
-#serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV1d0, config: { serializeResultToString: true }}

@@ -4,6 +4,7 @@ import com.gremlin.gremlinLocal.service.GremlinEdgeAccess;
 import com.gremlin.gremlinLocal.service.GremlinLocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -36,5 +37,13 @@ public class GremlinController {
     }
     return "done";
   }
+
+  @GetMapping("/saveData")
+  public String saveData(){
+    gremlinLocalService.saveVertex();
+    return "done";
+  }
+
+
 
 }

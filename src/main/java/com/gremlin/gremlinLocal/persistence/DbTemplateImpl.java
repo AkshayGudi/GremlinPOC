@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.tinkerpop.gremlin.driver.Client;
 import org.apache.tinkerpop.gremlin.driver.Cluster;
 import org.apache.tinkerpop.gremlin.driver.RequestOptions;
@@ -22,15 +23,6 @@ public class DbTemplateImpl implements DbTemplate {
 
   /**
    * method to get all Vertex based on Label
-   *
-   * @param clazz
-   * @param label
-   * @param <T>
-   * @return
-   * @throws FileNotFoundException
-   * @throws IllegalAccessException
-   * @throws InstantiationException
-   * @throws NoSuchFieldException
    */
   @Override
   public <T> List<T> findVertexByLabel(Class<T> clazz, String label)
@@ -60,15 +52,6 @@ public class DbTemplateImpl implements DbTemplate {
 
   /**
    * Method to find all Edges based on Label
-   *
-   * @param clazz
-   * @param label
-   * @param <T>
-   * @return
-   * @throws FileNotFoundException
-   * @throws IllegalAccessException
-   * @throws InstantiationException
-   * @throws NoSuchFieldException
    */
   @Override
   public <T> List<T> findEdgeByLabel(Class<T> clazz, String label)
@@ -113,15 +96,48 @@ public class DbTemplateImpl implements DbTemplate {
   }
 
 
+  public void saveVertex(String label, Map<String, String> fieldMap) {
+    //Sample Query
+    //g.addV('person').property('id','thomas').property('age',26)
+
+    Client client = cluster.connect();
+    StringBuilder stringBuilder = new StringBuilder();
+    String query = String.format("g.addV('%s')", label);
+    stringBuilder.append(query);
+    for (String fieldName : fieldMap.keySet()) {
+      String property = String.format(".property('%s','%s')", fieldName, fieldMap.get(fieldName));
+      stringBuilder.append(property);
+    }
+
+    ResultSet results = client.submit(stringBuilder.toString());
+
+  }
+
+  /**
+   * The current version of save is using Id's of Vertices, which will be generalized later
+   *
+   * @param label
+   * @param fieldMap
+   */
+  public void saveEdge(String label, Map<String, String> fieldMap) {
+    //Sample Query
+    //g.V().has('id','akshay1').addE('KNOWS').to(g.V().has('id','akshay2'))
+
+    Client client = cluster.connect();
+    StringBuilder stringBuilder = new StringBuilder();
+    String query = String.format("g.addV('%s')", label);
+    stringBuilder.append(query);
+    for (String fieldName : fieldMap.keySet()) {
+      String property = String.format(".property('%s','%s')", fieldName, fieldMap.get(fieldName));
+      stringBuilder.append(property);
+    }
+
+    ResultSet results = client.submit(stringBuilder.toString());
+
+  }
+
   /**
    * Private method to map DB output to Model class
-   *
-   * @param results
-   * @param modelClassObj
-   * @param objs
-   * @param <T>
-   * @throws NoSuchFieldException
-   * @throws IllegalAccessException
    */
   private <T> void mapToModelVertex(ResultSet results, T modelClassObj, List<T> objs)
       throws NoSuchFieldException, IllegalAccessException {

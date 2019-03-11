@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import org.apache.tinkerpop.gremlin.driver.Client;
 import org.apache.tinkerpop.gremlin.driver.Cluster;
@@ -52,6 +53,17 @@ public class GremlinLocalService {
       System.out.println(knowsObj.getId());
     }
 
+  }
+
+  public void saveVertex(){
+    String label = "person";
+    Map<String,String> fieldNameValueMap = new LinkedHashMap<>();
+    fieldNameValueMap.put("id", "thomas");
+    fieldNameValueMap.put("firstName", "Mary");
+    fieldNameValueMap.put("lastName", "Andersen");
+    fieldNameValueMap.put("age", "39");
+
+    dbTemplate.saveVertex(label, fieldNameValueMap);
   }
 
 
