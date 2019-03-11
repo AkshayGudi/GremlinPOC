@@ -55,16 +55,26 @@ public class GremlinLocalService {
 
   }
 
-  public void saveVertex(){
+  public void saveVertex() {
     String label = "person";
-    Map<String,String> fieldNameValueMap = new LinkedHashMap<>();
-    fieldNameValueMap.put("id", "thomas");
-    fieldNameValueMap.put("firstName", "Mary");
-    fieldNameValueMap.put("lastName", "Andersen");
-    fieldNameValueMap.put("age", "39");
+    Map<String, String> fieldNameValueMap1 = new LinkedHashMap<>();
+    fieldNameValueMap1.put("id", "thomas");
+    fieldNameValueMap1.put("age", "39");
 
-    dbTemplate.saveVertex(label, fieldNameValueMap);
+    Map<String, String> fieldNameValueMap2 = new LinkedHashMap<>();
+    fieldNameValueMap2.put("id", "mary");
+    fieldNameValueMap2.put("age", "39");
+
+    dbTemplate.saveVertex(label, fieldNameValueMap1);
+    dbTemplate.saveVertex(label, fieldNameValueMap2);
   }
 
+  public void saveEdge() {
+    String edgeLabel = "KNOWS";
+    String vertex1Id = "thomas";
+    String vertex2Id = "mary";
+
+    dbTemplate.saveEdge(vertex1Id, vertex2Id, edgeLabel);
+  }
 
 }

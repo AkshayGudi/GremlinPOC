@@ -15,4 +15,6 @@ public interface DbTemplate {
       throws FileNotFoundException, IllegalAccessException, InstantiationException, NoSuchFieldException;
 
   public void saveVertex(String label, Map<String, String> fieldMap);
+
+  public  void saveEdge(String vertex1id, String vertex2id, String edgeLabel);
 }

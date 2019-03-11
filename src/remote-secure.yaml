@@ -28,9 +28,9 @@
 ##############################################################
 
 #These are dummy values or placeholders, not actual credentials
-hosts: [myhostname.gremlin.cosmosdb.azure.com]
-port: 443
-username: /dbs/mydatabase/colls/mygraph
+hosts: [myhostname]
+port: myport
+username: myUserName
 password: myPasswordString
 connectionPool: {enableSsl: true, keepAliveInterval: 1800000, maxWaitForConnection: 1800000}
 serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV1d0, config: { serializeResultToString: true }}

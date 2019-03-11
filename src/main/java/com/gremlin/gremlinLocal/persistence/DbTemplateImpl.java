@@ -116,23 +116,20 @@ public class DbTemplateImpl implements DbTemplate {
   /**
    * The current version of save is using Id's of Vertices, which will be generalized later
    *
-   * @param label
-   * @param fieldMap
+   * @param vertex1id
+   * @param vertex2id
+   * @param edgeLabel
    */
-  public void saveEdge(String label, Map<String, String> fieldMap) {
+  public void saveEdge(String vertex1id, String vertex2id, String edgeLabel) {
     //Sample Query
     //g.V().has('id','akshay1').addE('KNOWS').to(g.V().has('id','akshay2'))
 
     Client client = cluster.connect();
-    StringBuilder stringBuilder = new StringBuilder();
-    String query = String.format("g.addV('%s')", label);
-    stringBuilder.append(query);
-    for (String fieldName : fieldMap.keySet()) {
-      String property = String.format(".property('%s','%s')", fieldName, fieldMap.get(fieldName));
-      stringBuilder.append(property);
-    }
+    String query = String
+        .format("g.V().has('id','%s').addE('%s').to(g.V().has('id','%s'))", vertex1id, vertex2id,
+            edgeLabel);
 
-    ResultSet results = client.submit(stringBuilder.toString());
+    ResultSet results = client.submit(query);
 
   }
 

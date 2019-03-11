@@ -38,12 +38,16 @@ public class GremlinController {
     return "done";
   }
 
-  @GetMapping("/saveData")
-  public String saveData(){
+  @GetMapping("/saveVertex")
+  public String saveVertex(){
     gremlinLocalService.saveVertex();
     return "done";
   }
 
-
+  @GetMapping("/saveEdge")
+  public String saveEdge(){
+    gremlinLocalService.saveEdge();
+    return "done";
+  }
 
 }
